@@ -30,6 +30,18 @@ module admin_if #(
 
     output reg          auth_ok
 );
+    // Admin enters password
+    //         ↓
+    // FSM → S_ADMIN_AUTH
+    //         ↓
+    // FSM → S_ADMIN_MODE
+    //         ↓
+    // admin_if receives command
+    //         ↓
+    // if admin_cmd == 3  → single cancel
+    // if admin_cmd == 5  → bulk cancel
+    //         ↓
+    // token_manager executes deletion
 
     reg [PW_W-1:0] pw_store;
     reg pw_match;
